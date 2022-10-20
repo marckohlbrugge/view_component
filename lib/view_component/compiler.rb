@@ -62,7 +62,7 @@ module ViewComponent
         component_class.validate_collection_parameter!
       end
 
-      if component_class.respond_to?(:inline_template) && component_class.inline_template != nil
+      if component_class.respond_to?(:inline_template) && component_class.inline_template.present?
         template = component_class.inline_template
 
         redefinition_lock.synchronize do
@@ -136,7 +136,7 @@ module ViewComponent
     end
 
     def has_inline_template?
-      component_class.respond_to?(:inline_template) && component_class.inline_template != nil
+      component_class.respond_to?(:inline_template) && component_class.inline_template.present?
     end
 
     def template_errors
