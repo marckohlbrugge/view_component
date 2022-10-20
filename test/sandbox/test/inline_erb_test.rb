@@ -31,8 +31,8 @@ class InlineErbTest < ViewComponent::TestCase
     template_language! :slim
     template! <<~SLIM
       h1
-        | Hello, 
-        = name
+        | Hello,
+        = " " + name
         | !
     SLIM
 
