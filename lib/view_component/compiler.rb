@@ -75,6 +75,7 @@ module ViewComponent
           RUBY
           # rubocop:enable Style/EvalWithLocation
 
+          component_class.silence_redefinition_of_method("render_template_for")
           component_class.class_eval <<-RUBY, __FILE__, __LINE__ + 1
           def render_template_for(variant = nil)
             call
