@@ -12,12 +12,6 @@ class InlineErbTest < ViewComponent::TestCase
       <h1>Hello, <%= name %>!</h1>
     ERB
 
-    # fragment idea
-    # fragment :foo, -> (a, b, c) {
-    #   <<~ERB
-    #   ERB
-    # }
-
     def initialize(name)
       @name = name
     end
