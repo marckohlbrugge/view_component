@@ -96,10 +96,11 @@ module ViewComponent
             end
             RUBY
             # rubocop:enable Style/EvalWithLocation
+
+            define_render_template_for
           end
         end
 
-        define_render_template_for
       end
 
       component_class.build_i18n_backend
