@@ -7,7 +7,7 @@ module ViewComponent # :nodoc:
 
     class_methods do
       def template!(template)
-        caller = caller_locations[0]
+        caller = caller_locations(1..1)
         @__vc_inline_template = Template.new(
           template,
           inline_template_language,
