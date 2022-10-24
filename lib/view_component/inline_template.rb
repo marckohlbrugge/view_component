@@ -31,7 +31,7 @@ module ViewComponent # :nodoc:
 
       def inherited(subclass)
         super
-        subclass.template_language!(self.inline_template_language)
+        subclass.template_language!(inline_template_language)
       end
     end
   end
