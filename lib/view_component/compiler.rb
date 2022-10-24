@@ -68,7 +68,7 @@ module ViewComponent
         redefinition_lock.synchronize do
           component_class.silence_redefinition_of_method("call")
           # rubocop:disable Style/EvalWithLocation
-          component_class.class_eval <<-RUBY, template, 0
+          component_class.class_eval <<-RUBY, template.path, template.lineno
           def call
             #{compiled_inline_template(template)}
           end
@@ -241,10 +241,10 @@ module ViewComponent
     end
 
     def compiled_inline_template(template)
-      handler = ActionView::Template.handler_for_extension(@component_class.inline_template_language)
+      handler = ActionView::Template.handler_for_extension(template.language)
       template.rstrip! if component_class.strip_trailing_whitespace?
 
-      compile_template(template, handler)
+      compile_template(template.source, handler)
     end
 
     def compiled_template(file_path)
