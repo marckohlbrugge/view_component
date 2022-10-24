@@ -58,7 +58,7 @@ class InlineErbTest < ViewComponent::TestCase
     assert_selector("h1", text: "Hello, Fox Mulder!")
   end
 
-  test "caller locations work" do
+  test "error backtrace locations work" do
     error = assert_raises ArgumentError do
       render_inline(InlineRaiseErbComponent.new("Fox Mulder"))
     end
