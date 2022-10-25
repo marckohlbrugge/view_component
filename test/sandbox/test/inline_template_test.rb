@@ -31,6 +31,13 @@ class InlineErbTest < ViewComponent::TestCase
     end
   end
 
+  class InlineErbSubclassComponent < InlineErbComponent
+    template_language! :erb
+    template! <<~ERB
+      <h1>Hey, <%= name %>!</h1>
+    ERB
+  end
+
   class InlineSlimComponent < ViewComponent::Base
     include ViewComponent::InlineTemplate
 
@@ -74,5 +81,33 @@ class InlineErbTest < ViewComponent::TestCase
 
   test "inherits template_language" do
     assert_equal "slim", InheritedInlineSlimComponent.inline_template_language
+  end
+
+  test "subclassed erb works" do
+    render_inline(InlineErbSubclassComponent.new("Fox Mulder"))
+
+    assert_selector("h1", text: "Hey, Fox Mulder!")
+  end
+
+  test "calling template! multiple times raises an exception" do
+    error = assert_raises ViewComponent::ComponentError do
+      Class.new(InlineErbComponent) do
+        template! "foo"
+        template! "bar"
+      end
+    end
+
+    assert_equal "template! can only be called once per-component", error.message
+  end
+
+  test "calling template_language! multiple times raises an exception" do
+    error = assert_raises ViewComponent::ComponentError do
+      Class.new(InlineErbComponent) do
+        template_language! "foo"
+        template_language! "bar"
+      end
+    end
+
+    assert_equal "template_language! can only be called once per-component", error.message
   end
 end
