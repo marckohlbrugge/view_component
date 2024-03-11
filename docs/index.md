@@ -266,6 +266,7 @@ ViewComponent is built by over a hundred members of the community, including:
 * [Spina CMS](https://spinacms.com/)
 * [Startup Jobs](https://startup.jobs/)
 * [Topkey](https://topkey.io/)
+* [Vision Directory](https://vision.directory/)
 * [Wecasa](https://www.wecasa.fr/)
 * [WIP](https://wip.co/)
 * [Within3](https://www.within3.com/)
